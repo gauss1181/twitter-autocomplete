@@ -1,5 +1,6 @@
 const Twitter = require('twitter');
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -21,9 +22,7 @@ app.use(allowCrossDomain);
 app.use('/', express.static('dist'));
 
 app.get('/', (req, res) => {
-	res.status(200).send({
-		data: 'Successful request',
-	});
+	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.get('/twitter/user/search', (req, res) => {
